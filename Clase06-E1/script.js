@@ -1,48 +1,53 @@
 class producto{
-    constructor(producto, categoria, precio, vendido ){
-        this.producto = producto;
-        this.categoria = categoria;
-        this.precio = precio;
-        this.vendido = vendido;
+    constructor(nombre, categoria, precio, vendido ){
+        this.nombre = nombre | "";
+        this.categoria = categoria | "";
+        this.precio = precio | 0;
+        this.vendido = vendido | false;
     }
     calcularIVA(precio){
         let precioIVA = precio * 1.21;
         return precioIVA.toFixed(2);
     }
     mostrarDetalleProducto(){
-        alert("El producto " + this.producto + " del tipo " + this.categoria + " tiene un precio de " + this.precio + " + IVA incluido");
+        alert("El producto " + this.nombre + " del tipo " + this.categoria + " tiene un precio de " + this.precio + " + IVA incluido");
     }
 
     ingresarPrecio(){
-        this.precio = parseInt(prompt("Ingrese el precio del producto"));
-        return;
+        let precio = parseInt(prompt("Ingrese el precio del producto"));
+        return precio;
     }
 
     ingresarProducto(){
-        this.producto = prompt("Ingrese el nombre del producto");
-        return;
+        let nombre = prompt("Ingrese el nombre del producto");
+        return nombre;
     }
 
     ingresarCategoria(){
-        this.categoria = prompt("Ingrese la categoria del producto");
-        return;
+        let categoria = prompt("Ingrese la categoria del producto");
+        return categoria;
     }
 
 }
 
-const arrayProductos = [];
+let arrayProductos = [];
 //Se define el objeto producto
 let producto1 = new producto("","", "", false);
 let flag = "";
 do{
     //Carga de producto que quiere el cliente
-    producto1.ingresarProducto();
-    producto1.ingresarCategoria();
-    producto1.ingresarPrecio();
-    flag = prompt("Ingrese SI en caso de desear ingresar otro producto")
+    producto1.nombre = producto1.ingresarProducto();
+    console.log(producto1.nombre);
+    producto1.categoria = producto1.ingresarCategoria();
+    console.log(producto1.categoria);
+    producto1.precio = producto1.ingresarPrecio();
+    console.log(producto1.precio);
+    console.log(producto1);
     arrayProductos.push(producto1);
+    console.log(arrayProductos);
+    delete producto1;
+    flag = prompt("Ingrese SI en caso de desear ingresar otro producto");
 }while(flag == "SI");
-console.log(arrayProductos);
 alert("La cantidad de elementos ingresados es: " + arrayProductos.length);
 
 
