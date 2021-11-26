@@ -27,6 +27,8 @@ const productos = [
     {id: 13, nombre: "CAMISETA SELECCION 2021", categoria: "Deportes", precio: 11000, imagen: "./img/productos/camiseta-seleccion-arg.jpg", vendido: false },
 ]
 
+const carrito = [];
+
 //Cargo en una constante el elemento contenedor de mis productos
 const contenedorProductos = document.querySelector('.contenedor-productos');
 
@@ -66,8 +68,7 @@ function mostrarProductos(){
         btnAgregar.classList.add('btnAgregar');
         //Agrego el evento click sobre el boton que dispara la funcion que carga el producto en el carrito
         btnAgregar.onclick = () => {
-            //Tengo pendiente armar la funcion de carga de producto en carrito
-            alert("Tengo que armar una funcion para agregar el producto al carrito");
+            agregarACarrito(elemento.id);
         }
 
         //Agrego todos los elementos que fui preparando dentro del div que contiene mi producto
@@ -84,4 +85,11 @@ function mostrarProductos(){
 
 function btnBuscarProducto(){
     alert("Armar la funcion para buscar productos");
+}
+
+function agregarACarrito(id){
+    //Mediante el id que traigo del evento click sobre el boton, busco el elemento en mi catalogo de productos y lo agrego al carrito
+    const productoSeleccionado = productos.find( elemento => elemento.id === id );
+    carrito.push(productoSeleccionado);
+    alert("Se agregó el producto " + productoSeleccionado.nombre + " al carrito.");
 }
