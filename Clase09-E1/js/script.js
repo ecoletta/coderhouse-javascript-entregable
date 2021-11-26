@@ -5,6 +5,7 @@ class producto{
         this.precio = precio;
         this.vendido = vendido || false ;
     }
+
     calcularIVA(precio){
         let precioIVA = precio * 1.21;
         return precioIVA.toFixed(2);

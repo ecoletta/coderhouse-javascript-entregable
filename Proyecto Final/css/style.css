@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    font-family: 'Saira', sans-serif;
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 3rem;
+}
+
+.nombreProducto{
+    margin-top: 1rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'Saira', sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+
+.precioProducto{
+    color: green;
+    font-weight: bold;
+}
+
+.contenedor{
+    margin: 0 auto;
+}
+.contenedor-productos{
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card{
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    overflow: hidden;
+}
+
+.imagenProducto{
+    object-fit: cover;
+    object-position: center;
+}
+
+.btnAgregar {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: grey;
+}
+
+.btnAgregar:hover{
+    background-color: white;
+    transform: scale(1,1.2);
+}
