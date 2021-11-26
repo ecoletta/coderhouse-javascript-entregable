@@ -65,3 +65,4 @@ function descuentoEmpleado(precio,empleado){
     }
     return precio;
 }
+console.log(producto1);

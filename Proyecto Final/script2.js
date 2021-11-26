@@ -2,8 +2,9 @@
 let productoLS = JSON.parse(localStorage.getItem("producto"));
 let empleadoLS = localStorage.getItem("empleado");
 
+console.log("Este es el script 2", productoLS);
 //Seleccion el nodo sobre el que voy a trabajar
-let separador = document.getElementById("separador")
+let separador = document.getElementById("separador");
 
 //Creo el elemento li para agregar un nuevo elemento
 let li = document.createElement("li");
