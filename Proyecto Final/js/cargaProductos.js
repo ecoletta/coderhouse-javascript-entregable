@@ -72,7 +72,6 @@ function mostrarProductos(){
         //Agrego el evento click sobre el boton que dispara la funcion que carga el producto en el carrito
         btnAgregar.onclick = () => {
             agregarACarrito(elemento.id);
-            contadorCarrito.setAttribute("data-count",1);
             actualizarContadorProducto();
             actualizarIconoCarrito();
         }
