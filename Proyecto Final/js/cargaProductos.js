@@ -32,6 +32,9 @@ const carrito = [];
 //Cargo en una constante el elemento contenedor de mis productos
 const contenedorProductos = document.querySelector('.contenedor-productos');
 
+//Cargo en una constante el elemento con el contador del carrito
+const contadorCarrito = document.querySelector('#contadorCarrito');
+
 //Al ocurrir el evento carga de DOM ejecuto la funcion que carga mis productos en la pagina
 document.addEventListener("DOMContentLoaded", () => {
     mostrarProductos();
@@ -69,6 +72,9 @@ function mostrarProductos(){
         //Agrego el evento click sobre el boton que dispara la funcion que carga el producto en el carrito
         btnAgregar.onclick = () => {
             agregarACarrito(elemento.id);
+            contadorCarrito.setAttribute("data-count",1);
+            actualizarContadorProducto();
+            actualizarIconoCarrito();
         }
 
         //Agrego todos los elementos que fui preparando dentro del div que contiene mi producto
@@ -92,4 +98,21 @@ function agregarACarrito(id){
     const productoSeleccionado = productos.find( elemento => elemento.id === id );
     carrito.push(productoSeleccionado);
     alert("Se agregó el producto " + productoSeleccionado.nombre + " al carrito.");
+    //Guardo el ultimo producto agregado al carrito en LocalStorage. Por ahi para crear mas adelante una funcion deshacer rapido.
+    cargarLocalStorage(productoSeleccionado);
+}
+
+function cargarLocalStorage(elemento){
+    localStorage.setItem("ultimoProducto",JSON.stringify(elemento));
+}
+
+function actualizarContadorProducto(){
+    
+    //Actualizo en localstorage el contador del carrito. Que me sirve para actualizar el numero de elementos del carrito en el navbar
+    localStorage.setItem("contadorCarrito",carrito.length);
+}
+
+function actualizarIconoCarrito(){
+    //Actualizo el atributo data-count que me permite cambiar el numero del carrito
+    contadorCarrito.setAttribute("data-count",Number(localStorage.getItem("contadorCarrito")));
 }
