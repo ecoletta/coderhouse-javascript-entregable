@@ -48,8 +48,8 @@ const contadorCarrito = document.querySelector('#contadorCarrito');
 $(document).ready(function(){
     
     // Obtengo los productos de la base de datos con AJAX
-    obtenerProductosDeArchivo(URL);
-
+    productos2 = obtenerProductosDeArchivo(URL);
+    console.log(productos2);
     //Muestro los productos
     mostrarProductos();
     console.log("Se cargaron los productos con exito.");
@@ -147,8 +147,10 @@ function obtenerProductosDeArchivo(URL){
         url: URL
     }).done(function(data,status){
         if(status == "success"){
+            console.log("Se obtuvieron con exito los productos de la base de datos");
             productos2 = data;
-            console.log("Se obtuvieron con exito los productos de la base de datos")
+            console.log(productos2);
+            return productos2;
         }else{
             console.log("Error al intentar obtener los productos de la base de datos");
         }
