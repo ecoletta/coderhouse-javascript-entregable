@@ -1,14 +1,106 @@
-
-    [{"id": 1, "nombre": "BOTINES COPA", "categoria": "Deportes", "precio": 24000, "imagen": "./img/productos/botines-copa.jpg" , "vendido": false },
-    {"id": 2, "nombre": "BOTINES PREDATOR", "categoria": "Deportes", "precio": 26000, "imagen": "./img/productos/botines-predator.jpg", "vendido": false },
-    {"id": 3, "nombre": "BUZO SELECCION ARGENTINA", "categoria": "Deportes", "precio": 11000, "imagen": "./img/productos/buzo-seleccion-arg.jpg", "vendido": false },
-    {"id": 4, "nombre": "CAMPERA SELECCION ARGENTINA", "categoria": "Deportes", "precio": 14000, "imagen": "./img/productos/campera-seleccion-arg.jpg", "vendido": false },
-    {"id": 6, "nombre": "PELOTA PROFESIONAL AFA 2021", "categoria": "Deportes", "precio": 4500, "imagen": "./img/productos/pelota-AFA.jpg", "vendido": false },
-    {"id": 5, "nombre": "MOCHILA SELECCION ARGENTINA", "categoria": "Deportes", "precio": 8200, "imagen": "./img/productos/mochila-seleccion-arg.jpg", "vendido": false },
-    {"id": 7, "nombre": "PELOTA PROFESIONAL UEFA 2021", "categoria": "Deportes", "precio": 11000, "imagen": "./img/productos/pelota-UEFA.jpg", "vendido": false },
-    {"id": 8, "nombre": "OJOTAS ADIDAS BART", "categoria": "Deportes", "precio": 7000, "imagen": "./img/productos/ojotas-adidas-bart.jpg", "vendido": false },
-    {"id": 9, "nombre": "OJOTAS ADIDAS BOCA", "categoria": "Deportes", "precio": 7500, "imagen": "./img/productos/ojotas-adidas-boca.jpg", "vendido": false },
-    {"id": 10, "nombre": "OJOTAS ADIDAS RIVER", "categoria": "Deportes", "precio": 7500, "imagen": "./img/productos/ojotas-adidas-river.jpg", "vendido": false },
-    {"id": 11, "nombre": "CAMISETA BOCA 2021", "categoria": "Deportes", "precio": 11000, "imagen": "./img/productos/camiseta-boca.jpg", "vendido": false },
-    {"id": 12, "nombre": "CAMISETA RIVER 2021", "categoria": "Deportes", "precio": 11000, "imagen": "./img/productos/camiseta-river.jpg", "vendido": false },
-    {"id": 13, "nombre": "CAMISETA SELECCION 2021", "categoria": "Deportes", "precio": 11000, "imagen": "./img/productos/camiseta-seleccion-arg.jpg", "vendido": false }]
+[
+  {
+    "id": 1,
+    "nombre": "BOTINES COPA",
+    "categoria": "Deportes",
+    "precio": 24000,
+    "imagen": "./img/productos/botines-copa.jpg",
+    "vendido": false
+  },
+  {
+    "id": 2,
+    "nombre": "BOTINES PREDATOR",
+    "categoria": "Deportes",
+    "precio": 26000,
+    "imagen": "./img/productos/botines-predator.jpg",
+    "vendido": false
+  },
+  {
+    "id": 3,
+    "nombre": "BUZO SELECCION ARGENTINA",
+    "categoria": "Deportes",
+    "precio": 11000,
+    "imagen": "./img/productos/buzo-seleccion-arg.jpg",
+    "vendido": false
+  },
+  {
+    "id": 4,
+    "nombre": "CAMPERA SELECCION ARGENTINA",
+    "categoria": "Deportes",
+    "precio": 14000,
+    "imagen": "./img/productos/campera-seleccion-arg.jpg",
+    "vendido": false
+  },
+  {
+    "id": 6,
+    "nombre": "PELOTA PROFESIONAL AFA 2021",
+    "categoria": "Deportes",
+    "precio": 4500,
+    "imagen": "./img/productos/pelota-AFA.jpg",
+    "vendido": false
+  },
+  {
+    "id": 5,
+    "nombre": "MOCHILA SELECCION ARGENTINA",
+    "categoria": "Deportes",
+    "precio": 8200,
+    "imagen": "./img/productos/mochila-seleccion-arg.jpg",
+    "vendido": false
+  },
+  {
+    "id": 7,
+    "nombre": "PELOTA PROFESIONAL UEFA 2021",
+    "categoria": "Deportes",
+    "precio": 11000,
+    "imagen": "./img/productos/pelota-UEFA.jpg",
+    "vendido": false
+  },
+  {
+    "id": 8,
+    "nombre": "OJOTAS ADIDAS BART",
+    "categoria": "Deportes",
+    "precio": 7000,
+    "imagen": "./img/productos/ojotas-adidas-bart.jpg",
+    "vendido": false
+  },
+  {
+    "id": 9,
+    "nombre": "OJOTAS ADIDAS BOCA",
+    "categoria": "Deportes",
+    "precio": 7500,
+    "imagen": "./img/productos/ojotas-adidas-boca.jpg",
+    "vendido": false
+  },
+  {
+    "id": 10,
+    "nombre": "OJOTAS ADIDAS RIVER",
+    "categoria": "Deportes",
+    "precio": 7500,
+    "imagen": "./img/productos/ojotas-adidas-river.jpg",
+    "vendido": false
+  },
+  {
+    "id": 11,
+    "nombre": "CAMISETA BOCA 2021",
+    "categoria": "Deportes",
+    "precio": 11000,
+    "imagen": "./img/productos/camiseta-boca.jpg",
+    "vendido": false
+  },
+  {
+    "id": 12,
+    "nombre": "CAMISETA RIVER 2021",
+    "categoria": "Deportes",
+    "precio": 11000,
+    "imagen": "./img/productos/camiseta-river.jpg",
+    "vendido": false
+  },
+  {
+    "id": 13,
+    "nombre": "CAMISETA SELECCION 2021",
+    "categoria": "Deportes",
+    "precio": 11000,
+    "imagen": "./img/productos/camiseta-seleccion-arg.jpg",
+    "vendido": false
+  }
+]

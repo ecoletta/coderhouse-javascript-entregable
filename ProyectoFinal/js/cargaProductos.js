@@ -19,22 +19,7 @@ class producto{
 };
 
 //En esta constante tengo todo mi catalogo de productos
-let productos2 = [];
-const productos = [
-    {id: 1, nombre: "BOTINES COPA", categoria: "Deportes", precio: 24000, imagen: "./img/productos/botines-copa.jpg" , vendido: false },
-    {id: 2, nombre: "BOTINES PREDATOR", categoria: "Deportes", precio: 26000, imagen: "./img/productos/botines-predator.jpg", vendido: false },
-    {id: 3, nombre: "BUZO SELECCION ARGENTINA", categoria: "Deportes", precio: 11000, imagen: "./img/productos/buzo-seleccion-arg.jpg", vendido: false },
-    {id: 4, nombre: "CAMPERA SELECCION ARGENTINA", categoria: "Deportes", precio: 14000, imagen: "./img/productos/campera-seleccion-arg.jpg", vendido: false },
-    {id: 5, nombre: "MOCHILA SELECCION ARGENTINA", categoria: "Deportes", precio: 8200, imagen: "./img/productos/mochila-seleccion-arg.jpg", vendido: false },
-    {id: 6, nombre: "PELOTA PROFESIONAL AFA 2021", categoria: "Deportes", precio: 4500, imagen: "./img/productos/pelota-AFA.jpg", vendido: false },
-    {id: 7, nombre: "PELOTA PROFESIONAL UEFA 2021", categoria: "Deportes", precio: 11000, imagen: "./img/productos/pelota-UEFA.jpg", vendido: false },
-    {id: 8, nombre: "OJOTAS ADIDAS BART", categoria: "Deportes", precio: 7000, imagen: "./img/productos/ojotas-adidas-bart.jpg", vendido: false },
-    {id: 9, nombre: "OJOTAS ADIDAS BOCA", categoria: "Deportes", precio: 7500, imagen: "./img/productos/ojotas-adidas-boca.jpg", vendido: false },
-    {id: 10, nombre: "OJOTAS ADIDAS RIVER", categoria: "Deportes", precio: 7500, imagen: "./img/productos/ojotas-adidas-river.jpg", vendido: false },
-    {id: 11, nombre: "CAMISETA BOCA 2021", categoria: "Deportes", precio: 11000, imagen: "./img/productos/camiseta-boca.jpg", vendido: false },
-    {id: 12, nombre: "CAMISETA RIVER 2021", categoria: "Deportes", precio: 11000, imagen: "./img/productos/camiseta-river.jpg", vendido: false },
-    {id: 13, nombre: "CAMISETA SELECCION 2021", categoria: "Deportes", precio: 11000, imagen: "./img/productos/camiseta-seleccion-arg.jpg", vendido: false },
-]
+let productos = [];
 
 const carrito = [];
 
@@ -48,12 +33,12 @@ const contadorCarrito = document.querySelector('#contadorCarrito');
 $(document).ready(function(){
     
     // Obtengo los productos de la base de datos con AJAX
-    productos2 = obtenerProductosDeArchivo(URL);
-    console.log(productos2);
-    //Muestro los productos
-    mostrarProductos();
-    console.log("Se cargaron los productos con exito.");
+    $.getJSON('./database/productos.json',function(data){
+        data.forEach(elemento => productos.push(elemento));
 
+        mostrarProductos(productos);
+        console.log("Se cargaron los productos con exito.");
+    })
 });
 
 //Obtengo el valor del boton busqueda para procesar con JQUERY
@@ -63,10 +48,8 @@ $("#btnBuscar").click(function(e){
 });
 
 //Funcion de carga de productos en pagina
-function mostrarProductos(){
-
+function mostrarProductos(productos){
     //Recorro los elementos de mi catalogo de productos
-    console.log(productos2);
     //SI EN EL SIGUIENTE CODIGO CAMBIO PRODUCTOS x PRODUCTOS2 (QUE ES LA QUE ESTOY UTILIZANDO CON AJAX, NO ME CARGA LOS PRODUCTOS PORQUE PARECIERA QUE ESTA FUNCION CORRE ANTES QUE LA DE AJAX)
     productos.forEach((elemento) => {
         //Agrego un elemento div que va a contener a mi producto
@@ -143,6 +126,7 @@ function actualizarIconoCarrito(){
 
 function obtenerProductosDeArchivo(URL){
 
+    //Al final esta funcion funciona correctamente pero no la utilice.
     $.ajax({
         url: URL
     }).done(function(data,status){
