@@ -1,8 +1,7 @@
 //Verifico la carga del DOM con JQUERY
 $(()=>{
+    console.log("El DOM esta listo.");
 });
-
-///////////////////// VARIABLES /////////////////////
 
 //Defino la URL del archivo de mi catalogo de productos
 const URL = "http://127.0.0.1:5500/ProyectoFinal/database/productos.json"
@@ -27,19 +26,8 @@ const carrito = [];
 //Cargo en una constante el elemento contenedor de mis productos
 const contenedorProductos = document.querySelector('.contenedor-productos');
 
-//Cargo en una constante el elemento contenedor de mi checkout
-const contenedorCheckout = document.querySelector('.contenedor-checkout');
-
 //Cargo en una constante el elemento con el contador del carrito
 const contadorCarrito = document.querySelector('#contadorCarrito');
-
-//Cargo en una constante el elemento titulo
-const titulo = document.querySelector("#titulo");
-
-//Cargo en una constante el input de busqueda
-const busqueda = document.querySelector("#inputdata");
-
-///////////////////// LOGICA /////////////////////
 
 //Al ocurrir el evento carga de DOM con JQUERY ejecuto la funcion que carga mis productos en la pagina
 $(document).ready(function(){
@@ -56,23 +44,13 @@ $(document).ready(function(){
 //Obtengo el valor del boton busqueda para procesar con JQUERY
 $("#btnBuscar").click(function(e){
     e.preventDefault();
-    btnBuscarProducto(busqueda.value);
+    btnBuscarProducto();
 });
-
-//Con este boton proceso lo que tengo cargado en el carrito y lo muestro en pantalla.
-$("#contadorCarrito").click(function(e){
-    alert("Mostrar el contenido del carrito");
-    contenedorProductos.innerHTML = "";
-    titulo.children[0].innerHTML = "Checkout";
-    mostrarCheckout(carrito);
-    precioTotal(carrito);
-});
-
-///////////////////// FUNCIONES /////////////////////
 
 //Funcion de carga de productos en pagina
 function mostrarProductos(productos){
     //Recorro los elementos de mi catalogo de productos
+    //SI EN EL SIGUIENTE CODIGO CAMBIO PRODUCTOS x PRODUCTOS2 (QUE ES LA QUE ESTOY UTILIZANDO CON AJAX, NO ME CARGA LOS PRODUCTOS PORQUE PARECIERA QUE ESTA FUNCION CORRE ANTES QUE LA DE AJAX)
     productos.forEach((elemento) => {
         //Agrego un elemento div que va a contener a mi producto
         const divProducto = document.createElement('div');
@@ -119,34 +97,8 @@ function mostrarProductos(productos){
     })
 }
 
-function mostrarCheckout(productos){
-    //Recorro los elementos de mi catalogo de productos
-    productos.forEach((elemento) => {
-        //Agrego un elemento div que va a contener a mi producto
-        const divProducto = document.createElement('div');
-        divProducto.classList.add('card');
-        /////////////////////////
-        const productoCargado = document.createElement('p');
-        productoCargado.innerHTML = `
-        <img src="${elemento.imagen}" class="imagenProducto"> Producto: ${elemento.nombre} Precio: ${elemento.precio}$    <button id="eliminar${elemento.id}" class="btn btn-danger">Quitar</button>
-        `;
-        productoCargado.classList.add('productoCargado');
-        //Agrego todos los elementos que fui preparando dentro del div que contiene mi producto
-        $(divProducto).append(productoCargado);
-        //Agrego el div del producto dentro del div contenedor de productos
-        $(contenedorCheckout).append(divProducto);
-    })
-    let precioTot = 0;
-    const divProducto = document.createElement('div');
-    const total = document.createElement('h1');
-    precioTot = precioTotal(carrito);
-    total.textContent = "Total = " + precioTot + "$";
-    $(divProducto).append(total);
-    $(contenedorCheckout).append(divProducto);
-}
-
-function btnBuscarProducto(busqueda){
-    alert("Armar la funcion para buscar el producto " + busqueda );
+function btnBuscarProducto(){
+    alert("Armar la funcion para buscar productos");
 }
 
 function agregarACarrito(id){
@@ -187,14 +139,14 @@ function obtenerProductosDeArchivo(URL){
             console.log("Error al intentar obtener los productos de la base de datos");
         }
     });
-};
 
-function precioTotal(carrito){
-    let contador = 0;
-    carrito.forEach((elemento) => {
-        // contador = contador + parseInt(elemento.precio);
-        let precio = elemento.precio;
-        contador = contador + precio;
-    })
-    return contador;
-}
+    // $.get(URL, (data,status) =>{
+    //     if(status == "success"){
+    //         productos2 = data;
+    //         console.log("Se obtuvieron con exito los productos de la base de datos")
+    //     }else{
+    //         console.log("Error al intentar obtener los productos de la base de datos");
+    //     }
+    //     ;
+    // })
+};
