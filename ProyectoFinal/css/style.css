@@ -84,11 +84,11 @@ h1{
 }
 
 .contenedor-checkout{
-    /* margin-top: 1rem; */
+    margin-top: 1rem; 
     display: grid;
-    /* gap: 1rem; */
+    gap: 1rem; 
     grid-template-rows: repeat(1, 1fr);
-    text-align: left;
+    text-align: center;
     justify-content: space-around;
 }
 
@@ -115,7 +115,7 @@ h1{
     font-weight: bold;
     color: black;
     font-family: 'Saira', sans-serif;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
 }
 
@@ -141,4 +141,8 @@ h1{
 
 .red-cart {
 	color: black; background:white;
+}
+
+#btnFinalizar{
+    margin-bottom: 20px;
 }

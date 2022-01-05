@@ -39,7 +39,7 @@ const titulo = document.querySelector("#titulo");
 //Cargo en una constante el input de busqueda
 const busqueda = document.querySelector("#inputdata");
 
-///////////////////// LOGICA /////////////////////
+///////////////////// EVENTOS /////////////////////
 
 //Al ocurrir el evento carga de DOM con JQUERY ejecuto la funcion que carga mis productos en la pagina
 $(document).ready(function(){
@@ -120,29 +120,65 @@ function mostrarProductos(productos){
 }
 
 function mostrarCheckout(productos){
-    //Recorro los elementos de mi catalogo de productos
+    //Recorro los elementos del carrito
     productos.forEach((elemento) => {
         //Agrego un elemento div que va a contener a mi producto
         const divProducto = document.createElement('div');
         divProducto.classList.add('card');
-        /////////////////////////
+        /////////////////////////////////////////////////////////
         const productoCargado = document.createElement('p');
         productoCargado.innerHTML = `
-        <img src="${elemento.imagen}" class="imagenProducto"> Producto: ${elemento.nombre} Precio: ${elemento.precio}$    <button id="eliminar${elemento.id}" class="btn btn-danger">Quitar</button>
+        <img src="${elemento.imagen}" class="imagenProducto"> Producto: ${elemento.nombre} Precio: ${elemento.precio}$ <button id="eliminar${elemento.id}" class="btn btn-danger">Quitar</button>
         `;
         productoCargado.classList.add('productoCargado');
         //Agrego todos los elementos que fui preparando dentro del div que contiene mi producto
         $(divProducto).append(productoCargado);
         //Agrego el div del producto dentro del div contenedor de productos
         $(contenedorCheckout).append(divProducto);
+
+        let botonEliminar = document.getElementById(`eliminar${elemento.id}`);
+
+        botonEliminar.addEventListener('click',()=>{
+            let idProductoQuitar  = parseInt(botonEliminar.id.slice(8,10));
+            botonEliminar.parentElement.parentElement.remove();
+            quitarProductoCarrito(idProductoQuitar);
+            actualizarContadorProducto()
+            actualizarIconoCarrito()
+            actualizarTotal(carrito);
+            //ACA TENDRIA QUE AGREGAR CODIGO PARA ELIMINAR EL ELEMENTO TAMBIEN DEL CARRITO Y ACTUALIZAR EL MONTO DEL CHECKOUT...
+        })
+
     })
     let precioTot = 0;
     const divProducto = document.createElement('div');
     const total = document.createElement('h1');
+    const btnFinalizar = `<button id="btnFinalizar" class="btn btn-success">FINALIZAR COMPRA</button>`
+    //Le agrego un id a total para poder utilizarlo mas facilmente al momento de cambiar el precio total
+    total.setAttribute("id","checkoutTotal");
+    //Calculo el precio total de mi carrito y lo muestro
     precioTot = precioTotal(carrito);
     total.textContent = "Total = " + precioTot + "$";
     $(divProducto).append(total);
+    $(divProducto).append(btnFinalizar);
     $(contenedorCheckout).append(divProducto);
+
+    $("#btnFinalizar").click(function(){
+            $.post('https://jsonplaceholder.typicode.com/posts', JSON.stringify(carrito),function(respuesta, estado){
+                console.log(respuesta);
+                if(estado){
+                    //Elimino los productos de mi carrito
+                    for(let i=carrito.length; i>0 ; i--){
+                        carrito.pop();
+                    }
+                    //Actualizo el contador del carrito
+                    actualizarContadorProducto();
+                    actualizarIconoCarrito();
+                    //Limpio el localstorage
+                    localStorage.clear();
+                    alert("Se ha enviado un post con el carrito de compras para procesar el pago");
+                }
+            })        
+    })
 }
 
 function btnBuscarProducto(busqueda){
@@ -155,6 +191,11 @@ function agregarACarrito(id){
     carrito.push(productoSeleccionado);
     //Guardo el ultimo producto agregado al carrito en LocalStorage. Por ahi para crear mas adelante una funcion deshacer rapido.
     cargarLocalStorage(productoSeleccionado);
+}
+
+function quitarProductoCarrito(id){
+    //Mediante el id que traigo del evento click sobre el boton, busco el elemento en mi carrito de productos y lo quito 
+    carrito.splice(id-1,1);
 }
 
 function cargarLocalStorage(elemento){
@@ -173,7 +214,6 @@ function actualizarIconoCarrito(){
 }
 
 function obtenerProductosDeArchivo(URL){
-
     //Al final esta funcion funciona correctamente pero no la utilice.
     $.ajax({
         url: URL
@@ -197,4 +237,12 @@ function precioTotal(carrito){
         contador = contador + precio;
     })
     return contador;
+}
+
+function actualizarTotal(carrito){
+    let precioTot = precioTotal(carrito);
+    //Cargo en una constante el elemento con el precio total del carrito
+    const total = document.querySelector('#checkoutTotal');
+    //Actualizo el precio total del carrito
+    total.textContent = "Total = " + precioTot + "$";
 }
