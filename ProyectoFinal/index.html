@@ -32,9 +32,6 @@
               <a class="nav-link active" aria-current="page" href="#">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Deporte</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Calzado</a>
             </li>
             <li class="nav-item">
@@ -100,10 +97,13 @@
         <h5 class="card-title">Carrito de compras</h5> 
       </div>
       <div class="card-body">
-        <h6 class="card-title">Versiones de la aplicación</h6>
-        <p class="card-text"> v1: Esta pagina al precio ingresado le suma el iva.</p>
-        <p class="card-text"> v1.1: Se incorporan algunas mejoras al definir clase y metodos</p>
-        <p class="card-text"> v1.2: Se incorporó el uso del local storage, detalle de producto ingresado y aviso al usuario en script2</p>
+        <h6 class="card-title">Descripción de la aplicación</h6>
+        <p class="card-text"> La aplicación simula ser un sitio de compras de productos deportivos, el cual en este caso cuenta con una base de datos de 13 productos. Al inicializar el sitio se cargan los 13 productos mediante un GET hacia el archivo productos.json que tiene los productos.</p>
+        <p class="card-text"> Se pueden ir agregando productos al carrito mediante los botones que hay en cada producto. Al hacerlo aparece una notificación en verde debajo del boton presionado que desaparece en pocos segundos y se actualiza el contador del producto del icono del carrito arriba a la derecha.</p>
+        <p class="card-text"> La funcion de la barra de busqueda no esta codificada, pero captura la palabra que se desea buscar y podria codear la función para filtrar. Aun no lo realice por falta de tiempo.</p>
+        <p class="card-text"> Al hacer click en el carrito, se elimina el catalogo de productos de la pantalla y aparecen los productos que fueron cargados al carrito. Cada producto puede ser eliminado con el boton que lo acompaña. Tambien se muestra el valor total de la compra. El valor total y la cantidad de productos en el icono se actualizan con cada producto eliminado.</p>
+        <p class="card-text"> Al presionar el boton finalizar se envia un post con el carrito que el cliente compró y se inicializa el carrito, localstorage, icono y la pantalla. Aparece un mensaje de compra finalizada con éxito.</p>
+
       </div>
     </div>
   </footer>

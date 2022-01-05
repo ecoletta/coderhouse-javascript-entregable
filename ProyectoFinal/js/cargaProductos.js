@@ -61,16 +61,17 @@ $("#btnBuscar").click(function(e){
 
 //Con este boton proceso lo que tengo cargado en el carrito y lo muestro en pantalla.
 $("#contadorCarrito").click(function(e){
-    alert("Mostrar el contenido del carrito");
+    if(carrito == ""){
+    }else{
     contenedorProductos.innerHTML = "";
     titulo.children[0].innerHTML = "Checkout";
     mostrarCheckout(carrito);
     precioTotal(carrito);
+    }
 });
 
 ///////////////////// FUNCIONES /////////////////////
 
-//Funcion de carga de productos en pagina
 function mostrarProductos(productos){
     //Recorro los elementos de mi catalogo de productos
     productos.forEach((elemento) => {
@@ -117,7 +118,7 @@ function mostrarProductos(productos){
         //Agrego el div del producto dentro del div contenedor de productos
         $(contenedorProductos).append(divProducto);
     })
-}
+};
 
 function mostrarCheckout(productos){
     //Recorro los elementos del carrito
@@ -125,7 +126,6 @@ function mostrarCheckout(productos){
         //Agrego un elemento div que va a contener a mi producto
         const divProducto = document.createElement('div');
         divProducto.classList.add('card');
-        /////////////////////////////////////////////////////////
         const productoCargado = document.createElement('p');
         productoCargado.innerHTML = `
         <img src="${elemento.imagen}" class="imagenProducto"> Producto: ${elemento.nombre} Precio: ${elemento.precio}$ <button id="eliminar${elemento.id}" class="btn btn-danger">Quitar</button>
@@ -166,24 +166,22 @@ function mostrarCheckout(productos){
             $.post('https://jsonplaceholder.typicode.com/posts', JSON.stringify(carrito),function(respuesta, estado){
                 console.log(respuesta);
                 if(estado){
-                    //Elimino los productos de mi carrito
-                    for(let i=carrito.length; i>0 ; i--){
-                        carrito.pop();
-                    }
+                    vaciarCarrito(carrito);
                     //Actualizo el contador del carrito
                     actualizarContadorProducto();
                     actualizarIconoCarrito();
                     //Limpio el localstorage
                     localStorage.clear();
-                    alert("Se ha enviado un post con el carrito de compras para procesar el pago");
+                    contenedorCheckout.innerHTML = "";
+                    titulo.children[0].innerHTML = "La compra finalizo con éxito";
                 }
             })        
     })
-}
+};
 
 function btnBuscarProducto(busqueda){
     alert("Armar la funcion para buscar el producto " + busqueda );
-}
+};
 
 function agregarACarrito(id){
     //Mediante el id que traigo del evento click sobre el boton, busco el elemento en mi catalogo de productos y lo agrego al carrito
@@ -191,27 +189,38 @@ function agregarACarrito(id){
     carrito.push(productoSeleccionado);
     //Guardo el ultimo producto agregado al carrito en LocalStorage. Por ahi para crear mas adelante una funcion deshacer rapido.
     cargarLocalStorage(productoSeleccionado);
-}
+};
 
 function quitarProductoCarrito(id){
     //Mediante el id que traigo del evento click sobre el boton, busco el elemento en mi carrito de productos y lo quito 
-    carrito.splice(id-1,1);
-}
+    let carritoTemp = [];
+    carrito.forEach(elemento =>{
+        if(elemento.id === id){
+
+        }else{
+            carritoTemp.push(elemento);
+        }
+    })
+    vaciarCarrito(carrito);
+    carritoTemp.forEach(elemento=>{
+        carrito.push(elemento);
+    })
+};
 
 function cargarLocalStorage(elemento){
     localStorage.setItem("ultimoProducto",JSON.stringify(elemento));
-}
+};
 
 function actualizarContadorProducto(){
     
     //Actualizo en localstorage el contador del carrito. Que me sirve para actualizar el numero de elementos del carrito en el navbar
     localStorage.setItem("contadorCarrito",carrito.length);
-}
+};
 
 function actualizarIconoCarrito(){
     //Actualizo el atributo data-count que me permite cambiar el numero del carrito
     contadorCarrito.setAttribute("data-count",Number(localStorage.getItem("contadorCarrito")));
-}
+};
 
 function obtenerProductosDeArchivo(URL){
     //Al final esta funcion funciona correctamente pero no la utilice.
@@ -237,7 +246,7 @@ function precioTotal(carrito){
         contador = contador + precio;
     })
     return contador;
-}
+};
 
 function actualizarTotal(carrito){
     let precioTot = precioTotal(carrito);
@@ -245,4 +254,10 @@ function actualizarTotal(carrito){
     const total = document.querySelector('#checkoutTotal');
     //Actualizo el precio total del carrito
     total.textContent = "Total = " + precioTot + "$";
+};
+
+function vaciarCarrito(carrito){
+    for(let i=carrito.length; i>0 ; i--){
+        carrito.pop();
+    }
 }
